@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Dashboard - Unity Trust SACCO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Dashboard Specific Styles */
+        .dashboard {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .dashboard-header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .dashboard-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .dashboard-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #2c5530;
+        }
+
+        .dashboard-logo .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dashboard-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notification-btn, .settings-btn {
+            position: relative;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #666;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .notification-btn:hover, .settings-btn:hover {
+            background: #f0f0f0;
+            color: #2c5530;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .user-menu:hover {
+            background: #f0f0f0;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #2c5530, #4a7c59);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .dashboard-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .welcome-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .welcome-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .welcome-text h1 {
+            color: #2c5530;
+            margin-bottom: 0.5rem;
+        }
+
+        .welcome-text p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .member-info {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .info-label {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-value {
+            font-weight: bold;
+            color: #2c5530;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .stat-icon.green { background: linear-gradient(135deg, #2c5530, #4a7c59); }
+        .stat-icon.blue { background: linear-gradient(135deg, #3498db, #2980b9); }
+        .stat-icon.yellow { background: linear-gradient(135deg, #f39c12, #e67e22); }
+        .stat-icon.purple { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+
+        .balance-toggle {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .stat-amount {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c5530;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .dashboard-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .tab-navigation {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab-btn.active {
+            color: #2c5530;
+            border-bottom-color: #2c5530;
+            background: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid #f0f0f0;
+            transition: background 0.3s ease;
+        }
+
+        .transaction-item:hover {
+            background: #f8f9fa;
+        }
+
+        .transaction-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.9rem;
+        }
+
+        .transaction-icon.deposit { background: #27ae60; }
+        .transaction-icon.withdrawal { background: #e74c3c; }
+        .transaction-icon.transfer { background: #3498db; }
+        .transaction-icon.loan { background: #f39c12; }
+
+        .transaction-details h4 {
+            margin: 0 0 0.2rem 0;
+            color: #2c5530;
+        }
+
+        .transaction-details p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .transaction-amount {
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .transaction-amount.positive { color: #27ae60; }
+        .transaction-amount.negative { color: #e74c3c; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .form-card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .form-card h3 {
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2c5530;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background: #2c5530;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1e3a21;
+        }
+
+        .btn-success {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #219a52;
+        }
+
+        .btn-danger {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #2c5530;
+            border: 2px solid #2c5530;
+        }
+
+        .btn-outline:hover {
+            background: #2c5530;
+            color: white;
+        }
+
+        .loan-card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .loan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .loan-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .loan-status.active {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .loan-status.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .loan-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-label {
+            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .detail-value {
+            font-weight: bold;
+            color: #2c5530;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 0.5rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            transition: width 0.3s ease;
+        }
+
+        .statement-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .statement-info h4 {
+            margin: 0 0 0.2rem 0;
+            color: #2c5530;
+        }
+
+        .statement-info p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .alert {
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-nav {
+                padding: 0 1rem;
+            }
+
+            .dashboard-main {
+                padding: 1rem;
+            }
+
+            .welcome-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .member-info {
+                justify-content: center;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-navigation {
+                flex-wrap: wrap;
+            }
+
+            .tab-btn {
+                flex: none;
+                min-width: 120px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="dashboard">
+     Dashboard Header 
+    <header class="dashboard-header">
+        <div class="dashboard-nav">
+            <div class="dashboard-logo">
+                <div class="logo-icon">U</div>
+                <span>Unity<span style="color: #4a7c59;">Trust</span>SACCO</span>
+            </div>
+            
+            <div class="dashboard-actions">
+                <button class="notification-btn" onclick="toggleNotifications()">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                
+                <button class="settings-btn" onclick="toggleSettings()">
+                    <i class="fas fa-cog"></i>
+                </button>
+                
+                <div class="user-menu" onclick="toggleUserMenu()">
+                    <div class="user-avatar">JD</div>
+                    <span>John Doe</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+     Dashboard Main Content 
+    <main class="dashboard-main">
+         Welcome Section 
+        <section class="welcome-section">
+            <div class="welcome-content">
+                <div class="welcome-text">
+                    <h1>Welcome back, John!</h1>
+                    <p>Here's your financial overview for January 2025</p>
+                    <div class="member-info">
+                        <div class="info-item">
+                            <span class="info-label">Member Number</span>
+                            <span class="info-value">UT001001</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Member Since</span>
+                            <span class="info-value">January 2022</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Account Status</span>
+                            <span class="info-value" style="color: #27ae60;">Active</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         Stats Cards 
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon green">
+                        <i class="fas fa-piggy-bank"></i>
+                    </div>
+                    <button class="balance-toggle" onclick="toggleBalance('total')">
+                        <i class="fas fa-eye" id="totalEye"></i>
+                    </button>
+                </div>
+                <div class="stat-amount" id="totalSavings">KSh 125,450</div>
+                <div class="stat-label">Total Savings</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon blue">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <button class="balance-toggle" onclick="toggleBalance('available')">
+                        <i class="fas fa-eye" id="availableEye"></i>
+                    </button>
+                </div>
+                <div class="stat-amount" id="availableBalance">KSh 98,750</div>
+                <div class="stat-label">Available Balance</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon yellow">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <button class="balance-toggle" onclick="toggleBalance('loan')">
+                        <i class="fas fa-eye" id="loanEye"></i>
+                    </button>
+                </div>
+                <div class="stat-amount" id="loanBalance">KSh 45,000</div>
+                <div class="stat-label">Loan Balance</div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-header">
+                    <div class="stat-icon purple">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                </div>
+                <div class="stat-amount">KSh 8,750</div>
+                <div class="stat-label">Dividends Earned</div>
+            </div>
+        </section>
+
+         Dashboard Content 
+        <section class="dashboard-content">
+             Tab Navigation 
+            <div class="tab-navigation">
+                <button class="tab-btn active" onclick="switchTab('transactions')">Transactions</button>
+                <button class="tab-btn" onclick="switchTab('payments')">Payments</button>
+                <button class="tab-btn" onclick="switchTab('loans')">Loans</button>
+                <button class="tab-btn" onclick="switchTab('statements')">Statements</button>
+                <button class="tab-btn" onclick="switchTab('profile')">Profile</button>
+            </div>
+
+             Transactions Tab 
+            <div id="transactionsTab" class="tab-content active">
+                <h3>Recent Transactions</h3>
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon deposit">
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <h4>Salary Deposit</h4>
+                            <p>January 15, 2025 • 2:30 PM</p>
+                        </div>
+                    </div>
+                    <div class="transaction-amount positive">+KSh 25,000</div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon withdrawal">
+                            <i class="fas fa-minus"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <h4>ATM Withdrawal</h4>
+                            <p>January 12, 2025 • 10:15 AM</p>
+                        </div>
+                    </div>
+                    <div class="transaction-amount negative">-KSh 5,000</div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon loan">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <h4>Loan Payment</h4>
+                            <p>January 10, 2025 • 9:00 AM</p>
+                        </div>
+                    </div>
+                    <div class="transaction-amount negative">-KSh 3,750</div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon transfer">
+                            <i class="fas fa-exchange-alt"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <h4>Transfer to Savings</h4>
+                            <p>January 8, 2025 • 3:45 PM</p>
+                        </div>
+                    </div>
+                    <div class="transaction-amount negative">-KSh 10,000</div>
+                </div>
+
+                <div class="transaction-item">
+                    <div class="transaction-info">
+                        <div class="transaction-icon deposit">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <div class="transaction-details">
+                            <h4>Dividend Payment</h4>
+                            <p>January 5, 2025 • 12:00 PM</p>
+                        </div>
+                    </div>
+                    <div class="transaction-amount positive">+KSh 2,150</div>
+                </div>
+            </div>
+
+             Payments Tab 
+            <div id="paymentsTab" class="tab-content">
+                <div class="form-grid">
+                    <div class="form-card">
+                        <h3><i class="fas fa-plus-circle"></i> Deposit Money</h3>
+                        <form onsubmit="processDeposit(event)">
+                            <div class="form-group">
+                                <label for="depositAmount">Amount (KSh)</label>
+                                <input type="number" id="depositAmount" name="depositAmount" min="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="depositMethod">Payment Method</label>
+                                <select id="depositMethod" name="depositMethod" required>
+                                    <option value="">Select method</option>
+                                    <option value="mpesa">M-Pesa</option>
+                                    <option value="bank">Bank Transfer</option>
+                                    <option value="cash">Cash Deposit</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-success">Deposit Money</button>
+                        </form>
+                    </div>
+
+                    <div class="form-card">
+                        <h3><i class="fas fa-minus-circle"></i> Withdraw Money</h3>
+                        <form onsubmit="processWithdrawal(event)">
+                            <div class="form-group">
+                                <label for="withdrawAmount">Amount (KSh)</label>
+                                <input type="number" id="withdrawAmount" name="withdrawAmount" min="100" max="98750" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="withdrawMethod">Withdrawal Method</label>
+                                <select id="withdrawMethod" name="withdrawMethod" required>
+                                    <option value="">Select method</option>
+                                    <option value="mpesa">M-Pesa</option>
+                                    <option value="bank">Bank Transfer</option>
+                                    <option value="atm">ATM Withdrawal</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-danger">Withdraw Money</button>
+                        </form>
+                    </div>
+
+                    <div class="form-card">
+                        <h3><i class="fas fa-exchange-alt"></i> Transfer Money</h3>
+                        <form onsubmit="processTransfer(event)">
+                            <div class="form-group">
+                                <label for="transferAmount">Amount (KSh)</label>
+                                <input type="number" id="transferAmount" name="transferAmount" min="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="transferTo">Transfer To</label>
+                                <select id="transferTo" name="transferTo" required>
+                                    <option value="">Select account</option>
+                                    <option value="savings">Savings Account</option>
+                                    <option value="fixed">Fixed Deposit</option>
+                                    <option value="member">Another Member</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="transferNote">Note (Optional)</label>
+                                <input type="text" id="transferNote" name="transferNote" placeholder="Transfer purpose">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Transfer Money</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+             Loans Tab 
+            <div id="loansTab" class="tab-content">
+                <h3>Active Loans</h3>
+                
+                <div class="loan-card">
+                    <div class="loan-header">
+                        <h4>Personal Loan #PL001</h4>
+                        <span class="loan-status active">Active</span>
+                    </div>
+                    <div class="loan-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Loan Amount</div>
+                            <div class="detail-value">KSh 50,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Balance</div>
+                            <div class="detail-value">KSh 45,000</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Interest Rate</div>
+                            <div class="detail-value">12% p.a.</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Monthly Payment</div>
+                            <div class="detail-value">KSh 3,750</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Next Payment</div>
+                            <div class="detail-value">Feb 10, 2025</div>
+                        </div>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 10%"></div>
+                    </div>
+                    <p style="margin: 0.5rem 0 0 0; color: #666; font-size: 0.9rem;">10% paid • 12 months remaining</p>
+                </div>
+
+                <div style="margin-top: 2rem;">
+                    <h3>Apply for New Loan</h3>
+                    <div class="form-card">
+                        <form onsubmit="applyForLoan(event)">
+                            <div class="form-group">
+                                <label for="loanType">Loan Type</label>
+                                <select id="loanType" name="loanType" required>
+                                    <option value="">Select loan type</option>
+                                    <option value="personal">Personal Loan (12%)</option>
+                                    <option value="business">Business Loan (10%)</option>
+                                    <option value="emergency">Emergency Loan (8%)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="loanAmount">Loan Amount (KSh)</label>
+                                <input type="number" id="loanAmount" name="loanAmount" min="5000" max="500000" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="loanPurpose">Purpose</label>
+                                <textarea id="loanPurpose" name="loanPurpose" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="repaymentPeriod">Repayment Period (Months)</label>
+                                <select id="repaymentPeriod" name="repaymentPeriod" required>
+                                    <option value="">Select period</option>
+                                    <option value="6">6 months</option>
+                                    <option value="12">12 months</option>
+                                    <option value="18">18 months</option>
+                                    <option value="24">24 months</option>
+                                    <option value="36">36 months</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Apply for Loan</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+             Statements Tab 
+            <div id="statementsTab" class="tab-content">
+                <h3>Account Statements</h3>
+                
+                <div class="form-card" style="margin-bottom: 2rem;">
+                    <h4>Download Statement</h4>
+                    <form onsubmit="downloadStatement(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 1rem; align-items: end;">
+                            <div class="form-group">
+                                <label for="statementType">Statement Type</label>
+                                <select id="statementType" name="statementType" required>
+                                    <option value="monthly">Monthly Statement</option>
+                                    <option value="quarterly">Quarterly Statement</option>
+                                    <option value="annual">Annual Statement</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="statementMonth">Month</label>
+                                <select id="statementMonth" name="statementMonth" required>
+                                    <option value="2025-01">January 2025</option>
+                                    <option value="2024-12">December 2024</option>
+                                    <option value="2024-11">November 2024</option>
+                                    <option value="2024-10">October 2024</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="statementFormat">Format</label>
+                                <select id="statementFormat" name="statementFormat" required>
+                                    <option value="pdf">PDF</option>
+                                    <option value="excel">Excel</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Download</button>
+                        </div>
+                    </form>
+                </div>
+
+                <h4>Recent Statements</h4>
+                <div class="statement-item">
+                    <div class="statement-info">
+                        <h4>January 2025 Statement</h4>
+                        <p>Generated on January 31, 2025</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="downloadFile('january-2025.pdf')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <div class="statement-item">
+                    <div class="statement-info">
+                        <h4>December 2024 Statement</h4>
+                        <p>Generated on December 31, 2024</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="downloadFile('december-2024.pdf')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+
+                <div class="statement-item">
+                    <div class="statement-info">
+                        <h4>Q4 2024 Statement</h4>
+                        <p>Generated on December 31, 2024</p>
+                    </div>
+                    <button class="btn btn-outline" onclick="downloadFile('q4-2024.pdf')">
+                        <i class="fas fa-download"></i> Download PDF
+                    </button>
+                </div>
+            </div>
+
+             Profile Tab 
+            <div id="profileTab" class="tab-content">
+                <h3>Personal Information</h3>
+                
+                <div class="form-card">
+                    <form onsubmit="updateProfile(event)">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" id="firstName" name="firstName" value="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" id="lastName" name="lastName" value="Doe" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="john.doe@email.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" value="+254 700 123 456" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <textarea id="address" name="address" rows="3">123 Main Street, Nairobi, Kenya</textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+
+                <div class="form-card" style="margin-top: 2rem;">
+                    <h4>Change Password</h4>
+                    <form onsubmit="changePassword(event)">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <input type="password" id="currentPassword" name="currentPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <input type="password" id="newPassword" name="newPassword" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password</label>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required>
+                        </div>
+                        <button type="submit" class="btn btn-danger">Change Password</button>
+                    </form>
+                </div>
+
+                <div class="form-card" style="margin-top: 2rem;">
+                    <h4>Account Settings</h4>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <strong>SMS Notifications</strong>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">Receive SMS alerts for transactions</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <div>
+                            <strong>Email Notifications</strong>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">Receive email updates and statements</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <strong>Two-Factor Authentication</strong>
+                            <p style="margin: 0; color: #666; font-size: 0.9rem;">Add extra security to your account</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     Logout Button 
+    <div style="position: fixed; bottom: 2rem; right: 2rem;">
+        <button class="btn btn-danger" onclick="logout()" style="border-radius: 50px; padding: 1rem 2rem;">
+            <i class="fas fa-sign-out-alt"></i> Logout
+        </button>
+    </div>
+
+    <script>
+        // Balance visibility toggle
+        const balanceStates = {
+            total: true,
+            available: true,
+            loan: true
+        };
+
+        const balanceValues = {
+            total: 'KSh 125,450',
+            available: 'KSh 98,750',
+            loan: 'KSh 45,000'
+        };
+
+        function toggleBalance(type) {
+            const element = document.getElementById(type + 'Savings') || document.getElementById(type + 'Balance');
+            const eyeIcon = document.getElementById(type + 'Eye');
+            
+            balanceStates[type] = !balanceStates[type];
+            
+            if (balanceStates[type]) {
+                element.textContent = balanceValues[type];
+                eyeIcon.className = 'fas fa-eye';
+            } else {
+                element.textContent = '••••••';
+                eyeIcon.className = 'fas fa-eye-slash';
+            }
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => tab.classList.remove('active'));
+            
+            // Remove active class from all tab buttons
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected tab content
+            document.getElementById(tabName + 'Tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        // Form submissions
+        function processDeposit(event) {
+            event.preventDefault();
+            const amount = document.getElementById('depositAmount').value;
+            const method = document.getElementById('depositMethod').value;
+            
+            showAlert('success', `Deposit of KSh ${amount} via ${method} is being processed. You will receive a confirmation SMS shortly.`);
+            event.target.reset();
+        }
+
+        function processWithdrawal(event) {
+            event.preventDefault();
+            const amount = document.getElementById('withdrawAmount').value;
+            const method = document.getElementById('withdrawMethod').value;
+            
+            showAlert('info', `Withdrawal of KSh ${amount} via ${method} is being processed. Please wait for confirmation.`);
+            event.target.reset();
+        }
+
+        function processTransfer(event) {
+            event.preventDefault();
+            const amount = document.getElementById('transferAmount').value;
+            const to = document.getElementById('transferTo').value;
+            
+            showAlert('success', `Transfer of KSh ${amount} to ${to} completed successfully.`);
+            event.target.reset();
+        }
+
+        function applyForLoan(event) {
+            event.preventDefault();
+            const loanType = document.getElementById('loanType').value;
+            const amount = document.getElementById('loanAmount').value;
+            
+            showAlert('info', `Your ${loanType} application for KSh ${amount} has been submitted. You will be contacted within 24 hours.`);
+            event.target.reset();
+        }
+
+        function downloadStatement(event) {
+            event.preventDefault();
+            const type = document.getElementById('statementType').value;
+            const month = document.getElementById('statementMonth').value;
+            const format = document.getElementById('statementFormat').value;
+            
+            showAlert('success', `Your ${type} for ${month} is being prepared in ${format} format. Download will start shortly.`);
+        }
+
+        function updateProfile(event) {
+            event.preventDefault();
+            showAlert('success', 'Your profile has been updated successfully.');
+        }
+
+        function changePassword(event) {
+            event.preventDefault();
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (newPassword !== confirmPassword) {
+                showAlert('warning', 'New passwords do not match. Please try again.');
+                return;
+            }
+            
+            showAlert('success', 'Your password has been changed successfully.');
+            event.target.reset();
+        }
+
+        function downloadFile(filename) {
+            showAlert('info', `Downloading ${filename}...`);
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                window.location.href = 'index.html';
+            }
+        }
+
+        function showAlert(type, message) {
+            // Remove existing alerts
+            const existingAlerts = document.querySelectorAll('.alert');
+            existingAlerts.forEach(alert => alert.remove());
+            
+            // Create new alert
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            
+            // Insert at the top of the main content
+            const main = document.querySelector('.dashboard-main');
+            main.insertBefore(alert, main.firstChild);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Placeholder functions for header actions
+        function toggleNotifications() {
+            showAlert('info', 'Notifications panel coming soon!');
+        }
+
+        function toggleSettings() {
+            showAlert('info', 'Settings panel coming soon!');
+        }
+
+        function toggleUserMenu() {
+            showAlert('info', 'User menu coming soon!');
+        }
+    </script>
+
+    <style>
+        /* Toggle Switch Styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2c5530;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+    </style>
+</body>
+</html>

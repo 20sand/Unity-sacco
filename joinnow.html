@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Now - Unity Trust SACCO</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .join-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1e3a8a 100%);
+            padding: 40px 20px;
+        }
+        
+        .join-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .join-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 48px;
+            text-align: center;
+        }
+        
+        .join-header .logo {
+            margin-bottom: 24px;
+        }
+        
+        .join-header .logo-icon {
+            width: 64px;
+            height: 64px;
+            background: white;
+            color: #10b981;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            margin: 0 auto 16px;
+        }
+        
+        .join-header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+        
+        .join-header p {
+            font-size: 1.125rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .join-content {
+            padding: 48px;
+        }
+        
+        .join-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 32px;
+            margin-bottom: 48px;
+        }
+        
+        .step {
+            text-align: center;
+        }
+        
+        .step-number {
+            width: 48px;
+            height: 48px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0 auto 16px;
+        }
+        
+        .step h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1f2937;
+        }
+        
+        .step p {
+            color: #6b7280;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .join-form {
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+        
+        .join-form h2 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 24px;
+            color: #1f2937;
+            text-align: center;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #10b981;
+        }
+        
+        .form-group small {
+            color: #6b7280;
+            font-size: 12px;
+            margin-top: 4px;
+            display: block;
+        }
+        
+        .membership-benefits {
+            background: #d1fae5;
+            border: 1px solid #10b981;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .membership-benefits h3 {
+            color: #065f46;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #047857;
+            font-size: 14px;
+        }
+        
+        .benefit-item i {
+            color: #10b981;
+            flex-shrink: 0;
+        }
+        
+        .join-btn {
+            width: 100%;
+            padding: 16px;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-bottom: 24px;
+        }
+        
+        .join-btn:hover {
+            background: #059669;
+        }
+        
+        .join-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
+        
+        .login-link {
+            text-align: center;
+            color: #6b7280;
+        }
+        
+        .login-link a {
+            color: #10b981;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: background 0.3s ease;
+        }
+        
+        .back-home:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .requirements {
+            background: #fef3c7;
+            border: 1px solid #f59e0b;
+            border-radius: 8px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+        
+        .requirements h3 {
+            color: #92400e;
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .requirements ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .requirements li {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            color: #92400e;
+            font-size: 14px;
+        }
+        
+        .requirements li i {
+            color: #f59e0b;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .join-page {
+                padding: 20px 10px;
+            }
+            
+            .join-header {
+                padding: 32px 24px;
+            }
+            
+            .join-content {
+                padding: 32px 24px;
+            }
+            
+            .join-form {
+                padding: 24px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .join-steps {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="join-page">
+        <a href="index.html" class="back-home">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+        
+        <div class="join-container">
+            <div class="join-header">
+                <div class="logo">
+                    <div class="logo-icon">U</div>
+                    <h1>Join Unity<span style="color: #fbbf24;">Trust</span>SACCO</h1>
+                </div>
+                <p>Start your journey to financial freedom with our community-focused savings and credit cooperative. Join over 5,000 members building wealth together.</p>
+            </div>
+            
+            <div class="join-content">
+                <div class="join-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>Complete Application</h3>
+                        <p>Fill out our simple membership form with your personal details</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>Make Initial Deposit</h3>
+                        <p>Start with a minimum deposit of KSh 1,000 to activate your account</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>Verification</h3>
+                        <p>We'll verify your documents and activate your membership</p>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <h3>Start Saving</h3>
+                        <p>Begin your savings journey and access our loan products</p>
+                    </div>
+                </div>
+                
+                <div class="join-form">
+                    <h2>Membership Application Form</h2>
+                    
+                    <form id="membershipForm" onsubmit="handleJoinSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                                <small>As it appears on your national ID</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="idNumber">National ID Number *</label>
+                                <input type="text" id="idNumber" name="idNumber" placeholder="Enter your ID number" required>
+                                <small>Your Kenyan national identification number</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+254 700 000 000" required>
+                                <small>We'll use this for M-Pesa transactions and notifications</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address *</label>
+                                <input type="email" id="emailAddress" name="emailAddress" placeholder="your@email.com" required>
+                                <small>For account statements and important updates</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of Birth *</label>
+                                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
+                                <small>Must be 18 years or older</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="occupation">Occupation *</label>
+                                <input type="text" id="occupation" name="occupation" placeholder="Your occupation" required>
+                                <small>Your current job or profession</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="monthlyIncome">Monthly Income (KSh) *</label>
+                                <select id="monthlyIncome" name="monthlyIncome" required>
+                                    <option value="">Select income range</option>
+                                    <option value="below-20000">Below KSh 20,000</option>
+                                    <option value="20000-50000">KSh 20,000 - 50,000</option>
+                                    <option value="50000-100000">KSh 50,000 - 100,000</option>
+                                    <option value="100000-200000">KSh 100,000 - 200,000</option>
+                                    <option value="above-200000">Above KSh 200,000</option>
+                                </select>
+                                <small>This helps us determine your loan eligibility</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="initialDeposit">Initial Deposit (KSh) *</label>
+                                <input type="number" id="initialDeposit" name="initialDeposit" placeholder="1000" min="1000" required>
+                                <small>Minimum KSh 1,000 required to open account</small>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="savingsGoal">Savings Goal</label>
+                                <select id="savingsGoal" name="savingsGoal">
+                                    <option value="">Select your primary goal</option>
+                                    <option value="emergency-fund">Emergency Fund</option>
+                                    <option value="home-purchase">Home Purchase</option>
+                                    <option value="business-capital">Business Capital</option>
+                                    <option value="education">Education</option>
+                                    <option value="retirement">Retirement</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <small>Optional: Helps us provide better financial advice</small>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address">Physical Address *</label>
+                            <textarea id="address" name="address" rows="3" placeholder="Enter your physical address" required></textarea>
+                            <small>Your current residential address</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nextOfKin">Next of Kin *</label>
+                            <input type="text" id="nextOfKin" name="nextOfKin" placeholder="Full name of next of kin" required>
+                            <small>Emergency contact person</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="nextOfKinPhone">Next of Kin Phone *</label>
+                            <input type="tel" id="nextOfKinPhone" name="nextOfKinPhone" placeholder="+254 700 000 000" required>
+                            <small>Phone number of your next of kin</small>
+                        </div>
+                        
+                        <div class="requirements">
+                            <h3><i class="fas fa-exclamation-triangle"></i> Required Documents</h3>
+                            <ul>
+                                <li><i class="fas fa-check"></i> Copy of National ID (both sides)</li>
+                                <li><i class="fas fa-check"></i> Two passport-size photographs</li>
+                                <li><i class="fas fa-check"></i> Proof of income (payslip, business permit, etc.)</li>
+                                <li><i class="fas fa-check"></i> Completed membership application form</li>
+                            </ul>
+                            <p style="margin-top: 12px; font-size: 14px; color: #92400e;">
+                                <strong>Note:</strong> You can submit these documents at any Unity Trust SACCO branch after online registration.
+                            </p>
+                        </div>
+                        
+                        <div class="membership-benefits">
+                            <h3><i class="fas fa-star"></i> Membership Benefits</h3>
+                            <div class="benefits-grid">
+                                <div class="benefit-item">
+                                    <i class="fas fa-percentage"></i>
+                                    <span>Competitive dividend rates up to 8.5%</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-hand-holding-usd"></i>
+                                    <span>Access to affordable loans</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <span>Free mobile banking</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>Financial advisory services</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-users"></i>
+                                    <span>Community investment opportunities</span>
+                                </div>
+                                <div class="benefit-item">
+                                    <i class="fas fa-shield-alt"></i>
+                                    <span>Deposit insurance protection</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                                <span>I agree to the <a href="#" style="color: #10b981;">Terms and Conditions</a> and <a href="#" style="color: #10b981;">Privacy Policy</a> *</span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" id="marketingConsent" name="marketingConsent">
+                                <span>I consent to receive marketing communications and updates about Unity Trust SACCO services</span>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="join-btn" id="joinBtn">
+                            <i class="fas fa-user-plus"></i>
+                            Join Unity Trust SACCO
+                        </button>
+                    </form>
+                    
+                    <div class="login-link">
+                        <p>Already have an account? <a href="memberlogin.html">Sign in here</a></p>
+                    </div>
+                </div>
+                
+                <div class="contact-info" style="text-align: center; padding: 24px; background: #f3f4f6; border-radius: 8px;">
+                    <h3 style="margin-bottom: 16px; color: #1f2937;">Need Help?</h3>
+                    <p style="color: #6b7280; margin-bottom: 16px;">Our team is here to assist you with your membership application</p>
+                    <div style="display: flex; justify-content: center; gap: 24px; flex-wrap: wrap;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-phone" style="color: #10b981;"></i>
+                            <span>+254 700 123 456</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-envelope" style="color: #10b981;"></i>
+                            <span>info@unitytrustsacco.co.ke</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-clock" style="color: #10b981;"></i>
+                            <span>Mon-Fri: 8AM-5PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script>
+        let isSubmitting = false;
+
+        function handleJoinSubmit(event) {
+            event.preventDefault();
+            
+            if (isSubmitting) return;
+            isSubmitting = true;
+            
+            const form = event.target;
+            const formData = new FormData(form);
+            const fullName = formData.get('fullName');
+            const initialDeposit = formData.get('initialDeposit');
+            
+            // Validate required fields
+            const requiredFields = ['fullName', 'idNumber', 'phoneNumber', 'emailAddress', 'dateOfBirth', 'occupation', 'monthlyIncome', 'initialDeposit', 'address', 'nextOfKin', 'nextOfKinPhone'];
+            
+            for (let field of requiredFields) {
+                if (!formData.get(field)) {
+                    showToast(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()} field.`, 'error');
+                    isSubmitting = false;
+                    return;
+                }
+            }
+            
+            // Validate age (must be 18+)
+            const birthDate = new Date(formData.get('dateOfBirth'));
+            const today = new Date();
+            const age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (age < 18 || (age === 18 && monthDiff < 0)) {
+                showToast('You must be at least 18 years old to join Unity Trust SACCO.', 'error');
+                isSubmitting = false;
+                return;
+            }
+            
+            // Validate initial deposit
+            if (parseInt(initialDeposit) < 1000) {
+                showToast('Initial deposit must be at least KSh 1,000.', 'error');
+                isSubmitting = false;
+                return;
+            }
+            
+            // Check terms agreement
+            if (!formData.get('agreeTerms')) {
+                showToast('Please agree to the Terms and Conditions to continue.', 'error');
+                isSubmitting = false;
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = document.getElementById('joinBtn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing Application...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Generate member number
+                const memberNumber = 'UT' + String(Math.floor(Math.random() * 900000) + 100000);
+                
+                showToast(`Welcome ${fullName}! Your membership application has been received. Your member number is ${memberNumber}. Check your email for next steps.`, 'success');
+                
+                // Show follow-up notifications
+                setTimeout(() => {
+                    showToast('Confirmation email sent to your registered email address.', 'info');
+                }, 3000);
+                
+                setTimeout(() => {
+                    showToast('Please visit any Unity Trust SACCO branch with your documents to complete verification.', 'info');
+                }, 6000);
+                
+                // Reset form
+                form.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                isSubmitting = false;
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                
+            }, 3000);
+        }
+
+        function showToast(message, type = 'info') {
+            const toast = document.getElementById('toast');
+            const toastIcon = toast.querySelector('.toast-icon');
+            const toastMessage = toast.querySelector('.toast-message');
+            
+            // Set icon based on type
+            let iconClass = 'fas fa-info-circle';
+            if (type === 'success') iconClass = 'fas fa-check-circle';
+            if (type === 'error') iconClass = 'fas fa-exclamation-circle';
+            if (type === 'warning') iconClass = 'fas fa-exclamation-triangle';
+            
+            toastIcon.className = `toast-icon ${type} ${iconClass}`;
+            toastMessage.textContent = message;
+            
+            // Show toast
+            toast.classList.add('show');
+            
+            // Hide toast after 6 seconds for longer messages
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 6000);
+        }
+
+        // Form validation helpers
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePhone(phone) {
+            const re = /^(\+254|0)[17]\d{8}$/;
+            return re.test(phone);
+        }
+
+        // Real-time validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailField = document.getElementById('emailAddress');
+            const phoneField = document.getElementById('phoneNumber');
+            const nextOfKinPhoneField = document.getElementById('nextOfKinPhone');
+            
+            emailField.addEventListener('blur', function() {
+                if (this.value && !validateEmail(this.value)) {
+                    this.style.borderColor = '#ef4444';
+                    showToast('Please enter a valid email address.', 'error');
+                } else {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            phoneField.addEventListener('blur', function() {
+                if (this.value && !validatePhone(this.value)) {
+                    this.style.borderColor = '#ef4444';
+                    showToast('Please enter a valid Kenyan phone number.', 'error');
+                } else {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            nextOfKinPhoneField.addEventListener('blur', function() {
+                if (this.value && !validatePhone(this.value)) {
+                    this.style.borderColor = '#ef4444';
+                    showToast('Please enter a valid phone number for next of kin.', 'error');
+                } else {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+            
+            // Auto-focus on first field
+            document.getElementById('fullName').focus();
+            
+            // Show welcome message
+            setTimeout(() => {
+                showToast('Welcome to Unity Trust SACCO! Complete the form below to start your membership application.', 'success');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

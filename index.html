@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity Trust SACCO - Grow Together, Prosper Together</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-wrapper">
+                <!-- Logo -->
+                <div class="logo" onclick="scrollToSection('home')">
+                    <div class="logo-icon">U</div>
+                    <span class="logo-text">Unity<span class="logo-accent">Trust</span>SACCO</span>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <a href="#home" onclick="scrollToSection('home')">Home</a>
+                    <a href="#about" onclick="scrollToSection('about')">About Us</a>
+                    <a href="#savings" onclick="scrollToSection('savings')">Savings Plans</a>
+                    <a href="#loans" onclick="scrollToSection('loans')">Loans</a>
+                    <a href="#stories" onclick="scrollToSection('stories')">Member Stories</a>
+                    <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+                </nav>
+
+                <!-- Action Buttons -->
+                <div class="header-actions">
+                    <button class="btn btn-outline" onclick="openModal('loginModal')">
+                        <i class="fas fa-sign-in-alt"></i> Member Login
+                    </button>
+                    <button class="btn btn-primary" onclick="openModal('joinModal')">
+                        <i class="fas fa-user-plus"></i> Join Now
+                    </button>
+                    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile" id="mobileNav">
+                <a href="#home" onclick="scrollToSection('home')">Home</a>
+                <a href="#about" onclick="scrollToSection('about')">About Us</a>
+                <a href="#savings" onclick="scrollToSection('savings')">Savings Plans</a>
+                <a href="#loans" onclick="scrollToSection('loans')">Loans</a>
+                <a href="#stories" onclick="scrollToSection('stories')">Member Stories</a>
+                <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+                <button class="btn btn-outline mobile-btn" onclick="openModal('loginModal')">
+                    <i class="fas fa-sign-in-alt"></i> Member Login
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Grow Together.<br>
+                        Prosper Together.
+                    </h1>
+                    <p class="hero-description">
+                        Affordable savings and loan solutions tailored for your community. 
+                        Join over 5,000 members building financial freedom.
+                    </p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-large btn-success" onclick="openModal('joinModal')">
+                            Open an Account
+                        </button>
+                        <button class="btn btn-large btn-outline-white" onclick="openModal('videoModal')">
+                            How It Works
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-video">
+                    <div class="video-play-button" onclick="openModal('videoModal')">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <div class="hero-nav">
+            <button class="nav-arrow" onclick="scrollToSection('home')">
+                <i class="fas fa-chevron-up"></i>
+            </button>
+            <button class="nav-arrow" onclick="scrollToSection('about')">
+                <i class="fas fa-chevron-down"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="about" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Unity Trust SACCO?</h2>
+                <p>We're committed to empowering our community through accessible financial services and shared prosperity.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" onclick="scrollToSection('stories')">
+                    <div class="feature-icon green">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Focused</h3>
+                    <p>Built by the community, for the community. Every member has a voice in our decisions.</p>
+                </div>
+                
+                <div class="feature-card" onclick="scrollToSection('loans')">
+                    <div class="feature-icon blue">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3>Low Interest Rates</h3>
+                    <p>Competitive rates on loans and attractive returns on your savings.</p>
+                </div>
+                
+                <div class="feature-card" onclick="scrollToSection('contact')">
+                    <div class="feature-icon yellow">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Secure & Trusted</h3>
+                    <p>Your money is safe with us. Licensed and regulated for your protection.</p>
+                </div>
+                
+                <div class="feature-card" onclick="scrollToSection('savings')">
+                    <div class="feature-icon purple">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Financial Growth</h3>
+                    <p>Watch your savings grow with our competitive dividend rates and bonus programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Savings Plans Section -->
+    <section id="savings" class="savings">
+        <div class="container">
+            <div class="section-header">
+                <h2>Savings Plans</h2>
+                <p>Choose a savings plan that fits your financial goals</p>
+            </div>
+            
+            <div class="savings-grid">
+                <div class="savings-card">
+                    <div class="savings-header">
+                        <h3 class="savings-title green">Basic Savings</h3>
+                        <p class="savings-subtitle">Perfect for getting started</p>
+                    </div>
+                    <div class="savings-content">
+                        <div class="savings-rate">
+                            <span class="rate">5.5%</span>
+                            <span class="rate-text">annual dividend</span>
+                        </div>
+                        <ul class="savings-features">
+                            <li>• Minimum deposit: KSh 1,000</li>
+                            <li>• No monthly fees</li>
+                            <li>• Mobile banking access</li>
+                            <li>• Quarterly dividends</li>
+                        </ul>
+                        <button class="btn btn-success" onclick="openPlanDetails('basic')">
+                            Choose Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="savings-card popular">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="savings-header">
+                        <h3 class="savings-title blue">Premium Savings</h3>
+                        <p class="savings-subtitle">For serious savers</p>
+                    </div>
+                    <div class="savings-content">
+                        <div class="savings-rate">
+                            <span class="rate">7.2%</span>
+                            <span class="rate-text">annual dividend</span>
+                        </div>
+                        <ul class="savings-features">
+                            <li>• Minimum deposit: KSh 10,000</li>
+                            <li>• Priority customer service</li>
+                            <li>• Higher loan limits</li>
+                            <li>• Monthly dividends</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="openPlanDetails('premium')">
+                            Choose Plan
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="savings-card">
+                    <div class="savings-header">
+                        <h3 class="savings-title yellow">Gold Savings</h3>
+                        <p class="savings-subtitle">Maximum returns</p>
+                    </div>
+                    <div class="savings-content">
+                        <div class="savings-rate">
+                            <span class="rate">8.5%</span>
+                            <span class="rate-text">annual dividend</span>
+                        </div>
+                        <ul class="savings-features">
+                            <li>• Minimum deposit: KSh 50,000</li>
+                            <li>• Dedicated relationship manager</li>
+                            <li>• Premium loan rates</li>
+                            <li>• Weekly dividends</li>
+                        </ul>
+                        <button class="btn btn-warning" onclick="openPlanDetails('gold')">
+                            Choose Plan
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loans Section -->
+    <section id="loans" class="loans">
+        <div class="container">
+            <div class="section-header">
+                <h2>Loan Products</h2>
+                <p>Flexible loan solutions for every need</p>
+            </div>
+            
+            <div class="loans-tools">
+                <!-- Loan Calculator -->
+                <div class="loan-calculator">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-calculator"></i> Loan Calculator</h3>
+                            <p>Calculate your monthly loan payments</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <label for="loanType">Loan Type</label>
+                                <select id="loanType">
+                                    <option value="">Select loan type</option>
+                                    <option value="personal">Personal Loan (12%)</option>
+                                    <option value="business">Business Loan (10%)</option>
+                                    <option value="emergency">Emergency Loan (8%)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="loanAmount">Loan Amount (KSh)</label>
+                                <input type="number" id="loanAmount" placeholder="50000">
+                            </div>
+                            <div class="form-group">
+                                <label for="loanTerm">Loan Term (Months)</label>
+                                <input type="number" id="loanTerm" placeholder="12">
+                            </div>
+                            <button class="btn btn-primary" onclick="calculateLoan()">
+                                Calculate Payment
+                            </button>
+                            <div id="calculationResult" class="calculation-result" style="display: none;">
+                                <h4>Calculation Results:</h4>
+                                <div class="result-item">
+                                    <span>Monthly Payment:</span>
+                                    <span id="monthlyPayment"></span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Total Payment:</span>
+                                    <span id="totalPayment"></span>
+                                </div>
+                                <div class="result-item">
+                                    <span>Total Interest:</span>
+                                    <span id="totalInterest"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Loan Application -->
+                <div class="loan-application">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3><i class="fas fa-file-alt"></i> Quick Loan Application</h3>
+                            <p>Apply for a loan in minutes</p>
+                        </div>
+                        <div class="card-content">
+                            <div class="loan-tabs">
+                                <button class="tab-btn active" onclick="switchLoanTab('personal')">Personal</button>
+                                <button class="tab-btn" onclick="switchLoanTab('business')">Business</button>
+                                <button class="tab-btn" onclick="switchLoanTab('emergency')">Emergency</button>
+                            </div>
+                            
+                            <div id="personalTab" class="tab-content active">
+                                <div class="loan-info">
+                                    <i class="fas fa-credit-card"></i>
+                                    <h4>Personal Loan</h4>
+                                    <p>Up to KSh 500,000 at 12% interest</p>
+                                </div>
+                                <button class="btn btn-primary" onclick="openLoanApplication('personal')">
+                                    Apply Now
+                                </button>
+                            </div>
+                            
+                            <div id="businessTab" class="tab-content">
+                                <div class="loan-info">
+                                    <i class="fas fa-building"></i>
+                                    <h4>Business Loan</h4>
+                                    <p>Up to KSh 2,000,000 at 10% interest</p>
+                                </div>
+                                <button class="btn btn-primary" onclick="openLoanApplication('business')">
+                                    Apply Now
+                                </button>
+                            </div>
+                            
+                            <div id="emergencyTab" class="tab-content">
+                                <div class="loan-info">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    <h4>Emergency Loan</h4>
+                                    <p>Up to KSh 100,000 at 8% interest</p>
+                                </div>
+                                <button class="btn btn-danger" onclick="openLoanApplication('emergency')">
+                                    Apply Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="loan-products">
+                <div class="loan-card">
+                    <div class="loan-header">
+                        <h3><i class="fas fa-credit-card"></i> Personal Loans</h3>
+                        <p>For personal expenses and emergencies</p>
+                    </div>
+                    <ul class="loan-features">
+                        <li>• Up to KSh 500,000</li>
+                        <li>• 12% annual interest</li>
+                        <li>• 1-36 months repayment</li>
+                        <li>• Quick approval</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openLoanDetails('personal')">
+                        Learn More
+                    </button>
+                </div>
+                
+                <div class="loan-card">
+                    <div class="loan-header">
+                        <h3><i class="fas fa-building"></i> Business Loans</h3>
+                        <p>Grow your business with our support</p>
+                    </div>
+                    <ul class="loan-features">
+                        <li>• Up to KSh 2,000,000</li>
+                        <li>• 10% annual interest</li>
+                        <li>• 6-60 months repayment</li>
+                        <li>• Business mentorship</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openLoanDetails('business')">
+                        Learn More
+                    </button>
+                </div>
+                
+                <div class="loan-card">
+                    <div class="loan-header">
+                        <h3><i class="fas fa-exclamation-circle"></i> Emergency Loans</h3>
+                        <p>Quick cash for urgent needs</p>
+                    </div>
+                    <ul class="loan-features">
+                        <li>• Up to KSh 100,000</li>
+                        <li>• 8% annual interest</li>
+                        <li>• 1-12 months repayment</li>
+                        <li>• Same day approval</li>
+                    </ul>
+                    <button class="btn btn-outline" onclick="openLoanDetails('emergency')">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Member Stories Section -->
+    <section id="stories" class="stories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Member Success Stories</h2>
+                <p>Real stories from our community members</p>
+            </div>
+            
+            <div class="stories-grid">
+                <div class="story-card" onclick="scrollToSection('contact')">
+                    <div class="story-header">
+                        <div class="story-avatar green">MK</div>
+                        <div class="story-info">
+                            <h4>Mary Kamau</h4>
+                            <p>Small Business Owner</p>
+                        </div>
+                    </div>
+                    <p class="story-text">
+                        "Unity Trust SACCO helped me start my tailoring business. The low-interest loan and business mentorship made all the difference!"
+                    </p>
+                    <span class="story-badge">Business Success</span>
+                </div>
+                
+                <div class="story-card" onclick="scrollToSection('contact')">
+                    <div class="story-header">
+                        <div class="story-avatar blue">JO</div>
+                        <div class="story-info">
+                            <h4>John Ochieng</h4>
+                            <p>Teacher</p>
+                        </div>
+                    </div>
+                    <p class="story-text">
+                        "I've been saving with Unity Trust for 3 years. The dividends have helped me build my dream home!"
+                    </p>
+                    <span class="story-badge secondary">Savings Growth</span>
+                </div>
+                
+                <div class="story-card" onclick="scrollToSection('contact')">
+                    <div class="story-header">
+                        <div class="story-avatar yellow">GW</div>
+                        <div class="story-info">
+                            <h4>Grace Wanjiku</h4>
+                            <p>Farmer</p>
+                        </div>
+                    </div>
+                    <p class="story-text">
+                        "The agricultural loan helped me expand my farm. Now I'm earning three times more than before!"
+                    </p>
+                    <span class="story-badge outline">Agricultural Success</span>
+                </div>
+            </div>
+            
+            <div class="stories-cta">
+                <button class="btn btn-large btn-success" onclick="scrollToSection('contact')">
+                    Share Your Story
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get In Touch</h2>
+                <p>Ready to join our community? Contact us today!</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon green">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Phone</h4>
+                            <p>+254 700 123 456</p>
+                            <p>+254 733 987 654</p>
+                            <small>Click to call</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon blue">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>info@unitytrustsacco.co.ke</p>
+                            <p>support@unitytrustsacco.co.ke</p>
+                            <small>Click to email</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon yellow">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>Address</h4>
+                            <p>Unity Trust Building</p>
+                            <p>Kimathi Street, Nairobi</p>
+                            <p>P.O. Box 12345-00100</p>
+                            <small>Get directions</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Send us a Message</h3>
+                            <p>We'll get back to you within 24 hours</p>
+                        </div>
+                        <div class="card-content">
+                            <form id="contactForm" onsubmit="submitContactForm(event)">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="tel" id="phone" name="phone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-success btn-full">
+                                    Send Message
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="logo" onclick="scrollToSection('home')">
+                        <div class="logo-icon">U</div>
+                        <span class="logo-text">Unity<span class="logo-accent">Trust</span>SACCO</span>
+                    </div>
+                    <p>Building financial freedom through community cooperation and shared prosperity.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#savings" onclick="scrollToSection('savings')">Savings Accounts</a></li>
+                        <li><a href="#loans" onclick="scrollToSection('loans')">Personal Loans</a></li>
+                        <li><a href="#loans" onclick="scrollToSection('loans')">Business Loans</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">Mobile Banking</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about" onclick="scrollToSection('about')">About Us</a></li>
+                        <li><a href="#stories" onclick="scrollToSection('stories')">Leadership</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">Careers</a></li>
+                        <li><a href="#stories" onclick="scrollToSection('stories')">News</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">Help Center</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">Contact Us</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">Privacy Policy</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Unity Trust SACCO. All rights reserved. Licensed by SASRA.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Member Login</h2>
+                <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Access your Unity Trust SACCO account</p>
+                <form id="loginForm" onsubmit="submitLogin(event)">
+                    <div class="form-group">
+                        <label for="memberNumber">Member Number</label>
+                        <input type="text" id="memberNumber" name="memberNumber" placeholder="UT001001" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-full">
+                        Login to Dashboard
+                    </button>
+                    <div class="form-footer">
+                        <a href="#" class="forgot-password">Forgot Password?</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Join Modal -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Join Unity Trust SACCO</h2>
+                <span class="close" onclick="closeModal('joinModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Start your membership application and begin your journey to financial freedom</p>
+                <form id="joinForm" onsubmit="submitJoinForm(event)">
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idNumber">ID Number</label>
+                        <input type="text" id="idNumber" name="idNumber" placeholder="Enter your ID number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="+254 700 000 000" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emailAddress">Email Address</label>
+                        <input type="email" id="emailAddress" name="emailAddress" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="initialDeposit">Initial Deposit (KSh)</label>
+                        <input type="number" id="initialDeposit" name="initialDeposit" placeholder="1000" min="1000" required>
+                    </div>
+                    <div class="membership-benefits">
+                        <h4>Membership Benefits</h4>
+                        <ul>
+                            <li>• Competitive dividend rates up to 8.5%</li>
+                            <li>• Access to affordable loans</li>
+                            <li>• Free mobile banking</li>
+                            <li>• Financial advisory services</li>
+                            <li>• Community investment opportunities</li>
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-full">
+                        Join Unity Trust SACCO
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>Unity Trust SACCO Introduction</h2>
+                <span class="close" onclick="closeModal('videoModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Watch our introduction video to learn more about our services</p>
+                <div class="video-container">
+                    <video 
+                        width="560" 
+                        height="314" 
+                        controls
+                        style="width: 100%; height: auto; border-radius: 8px;"
+                    >
+                        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AQP-G-78dm0tMV9aQD7xr3QleK2ACo6WBCqRdMDeXkqsgE2t5RM7NLrw5Y3Zi8QAU9IAV_qctEaM7LzzjBqhnIga-4E3TzkuAZ1CXBbiyDpvfOs5cAt5M0G.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Modal -->
+    <div id="howItWorksModal" class="modal">
+        <div class="modal-content modal-large">
+            <div class="modal-header">
+                <h2>How Unity Trust SACCO Works</h2>
+                <span class="close" onclick="closeModal('howItWorksModal')">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p>Learn about our simple 4-step process to financial freedom</p>
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number green">1</div>
+                        <div class="step-content">
+                            <h4>Join as a Member</h4>
+                            <p>Complete our simple registration process with a minimum deposit of KSh 1,000</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number blue">2</div>
+                        <div class="step-content">
+                            <h4>Start Saving</h4>
+                            <p>Make regular deposits and watch your savings grow with competitive dividends</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number yellow">3</div>
+                        <div class="step-content">
+                            <h4>Access Loans</h4>
+                            <p>Apply for affordable loans up to 3 times your savings balance</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number purple">4</div>
+                        <div class="step-content">
+                            <h4>Build Wealth</h4>
+                            <p>Enjoy annual dividends and build long-term financial security</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="toast-icon"></i>
+            <span class="toast-message"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
